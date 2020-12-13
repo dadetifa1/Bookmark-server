@@ -19,28 +19,28 @@ bookMarkRouter
           logger.error(`Title is required`);
           return res
             .status(400)
-            .send('Invalid data');
+            .send('Title is required');
         }
         
         if (!url) {
           logger.error(`Content is required`);
           return res
             .status(400)
-            .send('Invalid data');
+            .send('Content is required');
         }
 
         if (!rating && isNaN(rating)) {
           logger.error(`Rating is required and has to be a nummber`);
           return res
             .status(400)
-            .send('Invalid data');
+            .send('Rating is required and has to be a nummber');
         }
         
         if (!description) {
           logger.error(`Description is required`);
           return res
             .status(400)
-            .send('Invalid data');
+            .send('Description is required');
         }
       
         const id = uuid();
@@ -60,7 +60,7 @@ bookMarkRouter
   .route('/bookmarks/:id')
   .get((req, res) => {
     const { id } = req.params;
-    const book = bookmarks.find(book => book.id == id);
+    const book = bookmarks.find(book => book.id === id);
 
     if (!book) {
         logger.error(`Book with id ${id} not found.`);
@@ -74,7 +74,7 @@ bookMarkRouter
   .delete((req, res) => {
     const { id } = req.params;
 
-    const delAtIndex = bookmarks.findIndex(book => book.id == id);
+    const delAtIndex = bookmarks.findIndex(book => book.id === id);
 
     if (delAtIndex === -1) {
         logger.error(`Bookmark with id ${id} not found.`);
